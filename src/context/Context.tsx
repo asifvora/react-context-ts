@@ -11,9 +11,7 @@ const { Provider } = store;
 
 export const MyProvider: React.FC = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const value = useMemo(() => {
-    return { state, dispatch };
-  }, [state]);
+  const store = useMemo(() => ({ state, dispatch }), [state])
 
-  return <Provider value={value}>{children}</Provider>;
+  return <Provider value={store}>{children}</Provider>;
 };

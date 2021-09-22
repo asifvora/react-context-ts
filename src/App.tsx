@@ -1,28 +1,31 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { ThemeProvider } from "styled-components";
+import { Content } from "./components/Content";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { Container } from "./components/styles/Container.styled";
+import { GlobalStyles } from "./components/styles/Global.styled";
 import { MyProvider } from "./context";
-import { Counter } from "./components/Counter";
+
+const theme = {
+  colors: {
+    header: "#ebfbff",
+    body: "#fff",
+    footer: "#003333",
+  },
+  mobile: '768px'
+};
 
 const App: React.FC = () => {
   return (
     <MyProvider>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React 89955
-          </a>
-        </header>
-        <Counter />
-      </div>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Header />
+        <Container>
+          <Content />
+        </Container>
+        <Footer />
+      </ThemeProvider>
     </MyProvider>
   );
 };
